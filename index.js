@@ -1,29 +1,33 @@
 //jshint esversion: 6
 
+//express, body-parser and request packages
 const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
 
+//initalize app
 const app = express();
 
+//used badyParser to grab data posted to server from html form use urlencoded
 app.use(bodyParser.urlencoded({extended: true}));
 
+//sends the /html.html to the homepage
 app.get("/", function(req, res){
   res.sendFile(__dirname + "/index.html");
 });
 
 app.post("/", function(req, res){
-  // console.log(req.body.crypto);
 
   var crypto = req.body.crypto;
   var fiat = req.body.fiat;
   var amount = req.body.amount;
 
   var baseURL = "https://apiv2.bitcoinaverage.com/convert/global";
-   // https://apiv2.bitcoinaverage.com/indices/global/ticker/BTCUSD
+
   var options = {
     url: baseURL,
     method: "GET",
+    //These came from bitcoinaverage api
     qs: {
       from: crypto,
       to: fiat,
@@ -31,8 +35,9 @@ app.post("/", function(req, res){
     }
   }
 
+  //makes http call to apiv2.bitcoinaverage.com
   request(options, function(error, response, body){
-    // converts JSON into javascript object
+    // body returns the json JSON.parse converts JSON into javascript object
     var data = JSON.parse(body);
     var price = data.price;
 
@@ -48,6 +53,7 @@ app.post("/", function(req, res){
   });
 });
 
+//listens for http requests on the server
 app.listen(3000, function(){
   console.log("Server us running on port 3000");
 });
