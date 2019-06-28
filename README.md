@@ -12,6 +12,8 @@ The packages are express, body-parser and request.
 # Enter in terminal
 init npm
 install express body-parser request
+npm install nodemon
+
 
 # After packages are installed
 Run enter nodemon index.js in terminal. Enter localhost:3000
