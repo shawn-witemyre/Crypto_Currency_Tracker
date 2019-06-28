@@ -17,6 +17,6 @@ npm install nodemon
 ```
 
 # After packages are installed
-Run enter nodemon index.js in terminal. Enter localhost:3000
+Enter nodemon index.js in terminal. Enter localhost:3000 in web browser
 
 
