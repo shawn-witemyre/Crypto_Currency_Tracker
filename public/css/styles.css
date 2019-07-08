@@ -1,4 +1,8 @@
 body{
+  padding-top: 17%;
   text-align: center;
-  background-image: url("images/intro.jpg");
+  background-image: url("../images/intro.jpg");
+  background-size: cover;
+  background-repeat:   no-repeat;
+
 }
