@@ -1,3 +1,4 @@
+//needed to use const
 //jshint esversion: 6
 
 //express, body-parser and request packages
@@ -8,10 +9,14 @@ const request = require("request");
 //initalize app
 const app = express();
 
+app.use(express.static("public"));
+
 //used badyParser to grab data posted to server from html form use urlencoded
 app.use(bodyParser.urlencoded({extended: true}));
 
 //sends the /html.html to the homepage
+//get request to the "/"
+//callback function tells server what to do when the request happens
 app.get("/", function(req, res){
   res.sendFile(__dirname + "/index.html");
 });
@@ -33,7 +38,7 @@ app.post("/", function(req, res){
       to: fiat,
       amount: amount
     }
-  }
+  };
 
   //makes http call to apiv2.bitcoinaverage.com
   request(options, function(error, response, body){
@@ -53,7 +58,7 @@ app.post("/", function(req, res){
   });
 });
 
-//listens for http requests on the server
-app.listen(3000, function(){
+//listens for http requests sent to the server
+app.listen(process.env.PORT || 3000, function(){
   console.log("Server us running on port 3000");
 });
