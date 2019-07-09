@@ -46,15 +46,18 @@ app.post("/", function(req, res){
     var data = JSON.parse(body);
     var price = data.price;
 
-    console.log(price);
+    // console.log(price);
 
     var currentDate = data.time;
 
-    res.write("<p>The current date is " + currentDate + "</p>");
+    // res.write("<p>The current date is " + currentDate + "</p>");
 
-    res.write("<h1>" + amount + " " + crypto + " is currently selling for " + price + " " + fiat+"</h1>");
+    // res.write("<h1>" + amount + " " + crypto + " is currently selling for " + price + " " + fiat+"</h1>");
 
-    res.send();
+    // res.send();
+    res.sendFile(__dirname + "/results.html");
+
+
   });
 });
 
