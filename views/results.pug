@@ -1,0 +1,33 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    style
+      include ./style.css
+    title Chart.js demo
+    // import plugin script
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js')
+  body
+    .graph
+      h1 #{Conversion}
+        h2 #{Time}
+        // line chart canvas element
+        canvas#buyers(width='1200', height='800')
+        script.
+          // line chart data
+          var buyerData = {
+          labels : ["Year", "6 Months", "3 Months", "1 Month", "Day"],
+          datasets : [
+          {
+          fillColor : "rgba(172,194,132,0.4)",
+          strokeColor : "#ACC26D",
+          pointColor : "#fff",
+          pointStrokeColor : "#9DB86D",
+          data : [#{valueYear}, #{valueMonth6}, #{valueMonth3}, #{valueMonth}, #{valueToday}]
+          }
+          ]
+          }
+          // get line chart canvas
+          var buyers = document.getElementById('buyers').getContext('2d');
+          // draw line chart
+          new Chart(buyers).Line(buyerData);

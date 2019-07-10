@@ -5,9 +5,16 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
+const path = require("path");
 
 //initalize app
 const app = express();
+
+//load view enginer
+//npm install pug
+//https://www.youtube.com/watch?v=Ad2ngx6CT0M
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "pug");
 
 app.use(express.static("public"));
 
@@ -27,35 +34,57 @@ app.post("/", function(req, res){
   var fiat = req.body.fiat;
   var amount = req.body.amount;
 
-  var baseURL = "https://apiv2.bitcoinaverage.com/convert/global";
+  var baseURL = "https://apiv2.bitcoinaverage.com/indices/global/ticker/";
 
-  var options = {
-    url: baseURL,
-    method: "GET",
-    //These came from bitcoinaverage api
-    qs: {
-      from: crypto,
-      to: fiat,
-      amount: amount
-    }
-  };
+  var finalURL = baseURL + crypto + fiat;
+
+  // var options = {
+  //   url: baseURL,
+  //   method: "GET",
+  //   //These came from bitcoinaverage api
+  //   qs: {
+  //     from: crypto,
+  //     to: fiat,
+  //     amount: amount
+  //   }
+  // };
 
   //makes http call to apiv2.bitcoinaverage.com
-  request(options, function(error, response, body){
+  //options
+  request(finalURL, function(error, response, body){
     // body returns the json JSON.parse converts JSON into javascript object
     var data = JSON.parse(body);
-    var price = data.price;
+    console.log(data.display_symbol);
+    // var price = data.open.price;
+    var today = data.open.day;
+    var month = data.open.month;
+    var month3 = data.open.month_3;
+    var month6 = data.open.month_6;
+    var year = data.open.year;
+
+    var conversion = data.display_symbol;
+    var time = data.display_timestamp;
 
     // console.log(price);
 
-    var currentDate = data.time;
+    // var currentDate = data.time;
 
     // res.write("<p>The current date is " + currentDate + "</p>");
 
     // res.write("<h1>" + amount + " " + crypto + " is currently selling for " + price + " " + fiat+"</h1>");
 
     // res.send();
-    res.sendFile(__dirname + "/results.html");
+    // res.sendFile(__dirname + "/results.html");
+    res.render("results", {
+      // Date: currentDate,
+      Conversion: conversion,
+      Time: time,
+      valueToday: today,
+      valueMonth: month,
+      valueMonth3: month3,
+      valueMonth6: month6,
+      valueYear: year
+    });
 
 
   });
