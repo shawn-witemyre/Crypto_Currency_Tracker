@@ -7,12 +7,12 @@ current price of crypto currencies.
 
 # How to use
 Download or clone the files. Install npm from the terminal. Also install all of the packages in the terminal as well.
-The packages are express, body-parser and request. 
+The packages are express, body-parser, pug and request. 
 
 # Enter in terminal
 ```
 init npm
-install express body-parser request
+install express body-parser request pug
 npm install nodemon
 ```
 
