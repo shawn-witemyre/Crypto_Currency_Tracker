@@ -54,7 +54,7 @@ app.post("/", function(req, res){
   request(finalURL, function(error, response, body){
     // body returns the json JSON.parse converts JSON into javascript object
     var data = JSON.parse(body);
-    console.log(data.display_symbol);
+    // console.log(data.display_symbol);
     // var price = data.open.price;
     var today = data.open.day;
     var month = data.open.month;

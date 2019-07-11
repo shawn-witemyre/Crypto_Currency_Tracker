@@ -4,9 +4,13 @@ html(lang='en')
     meta(charset='utf-8')
     style
       include ./style.css
-    title Chart.js demo
+    title Crypto Currency Tracker
     // import plugin script
     script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js')
+    // bootstrap
+    link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous')
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js' integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM' crossorigin='anonymous')
+
   body
     .graph
       h1 #{Conversion}
@@ -19,7 +23,8 @@ html(lang='en')
           labels : ["Year", "6 Months", "3 Months", "1 Month", "Day"],
           datasets : [
           {
-          fillColor : "rgba(172,194,132,0.4)",
+          fontColor : "#07a374",
+          fillColor : "#07a374",
           strokeColor : "#ACC26D",
           pointColor : "#fff",
           pointStrokeColor : "#9DB86D",

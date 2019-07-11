@@ -1,8 +1,14 @@
+html,
 body{
   background-image: url("../images/results.jpg");
-  text-align: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
+  width: 100%;
 }
 .graph{
   padding-top: 5%;
   text-align: center;
+  color: white;
 }
